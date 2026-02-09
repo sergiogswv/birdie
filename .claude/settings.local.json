@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "WebSearch",
+      "Bash(findstr:*)",
+      "Bash(ls -la \"C:\\\\Users\\\\Sergio\\\\Documents\\\\dev\\\\birdie\\\\src-tauri\\\\src\"\" 2>&1 || dir \"C:UsersSergioDocumentsdevbirdiesrc-taurisrc\"\")",
+      "Bash(cargo check:*)",
+      "Bash(cargo build:*)",
+      "Bash(wc:*)",
+      "Bash(echo:*)",
+      "WebFetch(domain:crates.io)",
+      "Bash(npm run build:*)",
+      "Bash(npm install)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run tauri:*)",
+      "Bash(\"/c/Users/Sergio/Documents/dev/birdie/src-tauri/capabilities/default.json\" << 'EOF'\n{\n  \"$schema\": \"../../../node_modules/@tauri-apps/cli/schema.json\",\n  \"identifier\": \"main-capability\",\n  \"description\": \"Capability for the main window\",\n  \"windows\": [\"main\"],\n  \"webDomains\": [\"http://localhost\"],\n  \"permissions\": [\n    \"core:window:allow-internal-toggle-devtools\",\n    \"core:window:allow-close\",\n    \"core:event:allow-listen\",\n    \"core:event:allow-emit\",\n    \"tts:allow-speak\",\n    \"tts:allow-stop\",\n    \"tts:allow-is-speaking\",\n    \"tts:allow-get-voices\",\n    \"opener:allow-open\"\n  ]\n}\nEOF)",
+      "Bash(\"/c/Users/Sergio/Documents/dev/birdie/src-tauri/capabilities/default.json\" << 'EOF'\n{\n  \"$schema\": \"../../../node_modules/@tauri-apps/cli/schema.json\",\n  \"identifier\": \"main-capability\",\n  \"description\": \"Capability for the main window\",\n  \"windows\": [\"main\"],\n  \"webDomains\": [\"http://localhost\"],\n  \"permissions\": [\n    \"core:webview:allow-internal-toggle-devtools\",\n    \"core:window:allow-close\",\n    \"core:event:allow-listen\",\n    \"core:event:allow-emit\",\n    \"tts:allow-speak\",\n    \"tts:allow-stop\",\n    \"tts:allow-is-speaking\",\n    \"tts:allow-get-voices\",\n    \"opener:allow-open-url\"\n  ]\n}\nEOF)"
+    ]
+  }
+}

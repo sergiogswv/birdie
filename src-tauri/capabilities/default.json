@@ -1,0 +1,18 @@
+{
+  "$schema": "../../../node_modules/@tauri-apps/cli/schema.json",
+  "identifier": "main-capability",
+  "description": "Capability for the main window",
+  "windows": ["main"],
+  "webDomains": ["http://localhost"],
+  "permissions": [
+    "core:webview:allow-internal-toggle-devtools",
+    "core:window:allow-close",
+    "core:event:allow-listen",
+    "core:event:allow-emit",
+    "tts:allow-speak",
+    "tts:allow-stop",
+    "tts:allow-is-speaking",
+    "tts:allow-get-voices",
+    "opener:allow-open-url"
+  ]
+}
