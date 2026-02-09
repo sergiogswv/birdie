@@ -1,6 +1,7 @@
 mod notifications;
 mod stt;
 mod cdp;
+mod vision;
 
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 #[tauri::command]
@@ -47,7 +48,8 @@ pub fn run() {
             cdp::cdp_find_tab,
             cdp::cdp_execute_script,
             cdp::cdp_start_monitoring,
-            cdp::cdp_stop_monitoring
+            cdp::cdp_stop_monitoring,
+            vision::get_active_tab_context
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
