@@ -2,6 +2,7 @@ mod notifications;
 mod stt;
 mod cdp;
 mod vision;
+mod context_mapper;
 
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 #[tauri::command]
@@ -21,6 +22,28 @@ async fn transcribe_audio(
 #[tauri::command]
 fn copy_to_clipboard(text: String) -> Result<(), String> {
     stt::copy_to_clipboard(text)
+}
+
+// Context Mapper Commands
+#[tauri::command]
+fn validate_app_context(app_name: String) -> Result<context_mapper::ContextTask, String> {
+    let validator = context_mapper::ContextValidator::new();
+    validator.validate_and_get_context(&app_name)
+}
+
+#[tauri::command]
+fn get_search_targets(app_name: String) -> Result<Vec<String>, String> {
+    let validator = context_mapper::ContextValidator::new();
+    match validator.validate_and_get_context(&app_name) {
+        Ok(task) => Ok(task.search_targets),
+        Err(e) => Err(e),
+    }
+}
+
+#[tauri::command]
+fn should_process_app(app_name: String) -> bool {
+    let validator = context_mapper::ContextValidator::new();
+    validator.should_process_notification(&app_name, context_mapper::TaskPriority::Normal)
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -49,7 +72,10 @@ pub fn run() {
             cdp::cdp_execute_script,
             cdp::cdp_start_monitoring,
             cdp::cdp_stop_monitoring,
-            vision::get_active_tab_context
+            vision::get_active_tab_context,
+            validate_app_context,
+            get_search_targets,
+            should_process_app
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
