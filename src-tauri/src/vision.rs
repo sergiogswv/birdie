@@ -28,7 +28,7 @@ pub struct ContextResult {
 #[tauri::command]
 pub async fn get_active_tab_context(target_name: String) -> Result<ContextResult, String> {
     // Connect to Chrome DevTools Protocol
-    let mut browser = match Browser::connect("ws://localhost:9222/devtools/browser").await {
+    let mut browser = match Browser::connect("http://localhost:9222").await {
         Ok((browser, _handler)) => browser,
         Err(e) => {
             return Err(format!(
