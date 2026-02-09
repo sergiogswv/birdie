@@ -4,12 +4,14 @@ import CurrentNotification from './components/CurrentNotification';
 import NotificationList from './components/NotificationList';
 import PlaybackControls from './components/PlaybackControls';
 import VoiceRecorder from './components/VoiceRecorder';
+import CDPPanel from './components/CDPPanel';
 import './App.css';
 
 function App() {
   const { queue, currentNotification, isPlaying, playNext, stop, skip } = useNotifications();
   const [apiKey, setApiKey] = useState<string>(localStorage.getItem('google-cloud-api-key') || '');
   const [showSettings, setShowSettings] = useState(false);
+  const [showCDP, setShowCDP] = useState(false);
   const [tempApiKey, setTempApiKey] = useState(apiKey);
 
   const handleSaveSettings = () => {
@@ -26,18 +28,31 @@ function App() {
             <h1>🐦 Birdie - Asistente de Notificaciones</h1>
             <p>Escucha tus notificaciones en tiempo real</p>
           </div>
-          <button
-            className="settings-btn"
-            onClick={() => {
-              setShowSettings(!showSettings);
-              setTempApiKey(apiKey);
-            }}
-            title="Configuración"
-          >
-            ⚙️
-          </button>
+          <div style={{ display: 'flex', gap: '0.75rem' }}>
+            <button
+              className="settings-btn"
+              onClick={() => {
+                setShowCDP(!showCDP);
+              }}
+              title="Chrome DevTools Protocol"
+            >
+              🌐
+            </button>
+            <button
+              className="settings-btn"
+              onClick={() => {
+                setShowSettings(!showSettings);
+                setTempApiKey(apiKey);
+              }}
+              title="Configuración"
+            >
+              ⚙️
+            </button>
+          </div>
         </div>
       </header>
+
+      {showCDP && <CDPPanel />}
 
       {showSettings && (
         <section className="settings-section">

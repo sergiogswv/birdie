@@ -29,6 +29,10 @@ chrono = "0.4"
 reqwest = { version = "0.12", features = ["json", "rustls-tls"] }
 base64 = "0.22"
 arboard = "3.4"
+chromiumoxide = "0.7"
+futures = "0.3"
+lazy_static = "1.4"
+url = "2.5"
 
 [target.'cfg(target_os = "linux")'.dependencies]
 zbus = { version = "4.0", features = ["tokio"] }

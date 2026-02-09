@@ -1,5 +1,6 @@
 mod notifications;
 mod stt;
+mod cdp;
 
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 #[tauri::command]
@@ -40,7 +41,13 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             greet,
             transcribe_audio,
-            copy_to_clipboard
+            copy_to_clipboard,
+            cdp::cdp_connect,
+            cdp::cdp_get_tabs,
+            cdp::cdp_find_tab,
+            cdp::cdp_execute_script,
+            cdp::cdp_start_monitoring,
+            cdp::cdp_stop_monitoring
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
